@@ -1,0 +1,1 @@
+export const btnVariants = ["btn", "btn small", "btn outline"];

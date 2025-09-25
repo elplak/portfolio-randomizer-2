@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Frontend Generator</title>
+    <link href="styles/toolbar.css" rel="stylesheet">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+</head>
+<body>
+<header class="toolbar">
+    <h1><i class="fa-solid fa-shuffle"></i> Random Frontend Generator</h1>
+    <div class="toolbar-inner">
+        <div class="controls">
+            <h3>Select Sections (drag to reorder)</h3>
+            <h3><i class="fa-solid fa-layer-group"></i> Select Sections:</h3>
+            <div class="options">
+                <label><input type="checkbox" value="hero" checked><span><i class="fa-solid fa-star"></i> Hero</span></label>
+                <label><input type="checkbox" value="about" checked><span><i class="fa-solid fa-user"></i> About</span></label>
+                <label><input type="checkbox" value="features" checked><span><i class="fa-solid fa-list-check"></i> Features</span></label>
+                <label><input type="checkbox" value="cards" checked><span><i class="fa-solid fa-clone"></i> Cards</span></label>
+                <label><input type="checkbox" value="gallery" checked><span><i class="fa-solid fa-image"></i> Gallery</span></label>
+                <label><input type="checkbox" value="testimonials" checked><span><i class="fa-solid fa-comments"></i> Testimonials</span></label>
+                <label><input type="checkbox" value="pricing" checked><span><i class="fa-solid fa-tags"></i> Pricing</span></label>
+            </div>
+        </div>
+        <div class="actions">
+            <button id="generateBtn"><i class="fa-solid fa-wand-magic-sparkles"></i>New Layout</button>
+            <button id="downloadBtn"><i class="fa-solid fa-download"></i>Download</button>
+        </div>
+    </div>
+</header>
+</body>
+</html>
