@@ -1,7 +1,7 @@
 import { components } from "../components";
-import {applyRandomDesign} from "../features/themes";
-import {applyRandomEffects} from "../features/effects";
-import {enableSectionDragDrop} from "../utils/dragdrop";
+import { applyRandomDesign } from "features/themes";
+import { applyRandomEffects } from "features/effects";
+import { enableSectionDragDrop } from "utils/dragdrop";
 
 function shuffle<T>(array: T[]): T[] {
     return array
@@ -59,14 +59,11 @@ export async function generate(): Promise<void> {
         "container boxed",
         "container fluid"
     ];
-    const mainEl = document.querySelector<HTMLElement>("main.container");
+
+    const mainEl = document.getElementById("index");
     if (mainEl) {
         mainEl.className = layouts[Math.floor(Math.random() * layouts.length)];
-    }
-
-    const appEl = document.getElementById("app");
-    if (appEl) {
-        appEl.innerHTML = html;
+        mainEl.innerHTML = html;
     }
 
     applyRandomDesign();

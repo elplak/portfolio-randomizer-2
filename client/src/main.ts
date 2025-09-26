@@ -7,4 +7,5 @@ fetch("/toolbar.html")
         document.getElementById("toolbar-container")!.innerHTML = html;
         initLayoutControls();
         generate();
+        console.log("main after generate:", document.getElementById("index")!.innerHTML);
     });
