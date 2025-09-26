@@ -4,21 +4,28 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:client": "vite",
+    "dev:server": "ts-node server/src/index.ts",
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+
+    "build:client": "vite build",
+    "build:server": "tsc -p server/tsconfig.json",
+    "build": "npm run build:server && npm run build:client",
+
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/elplak/portfolio_randomizer.git"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/file-saver": "^2.0.7",
     "@types/node": "^24.5.2",
