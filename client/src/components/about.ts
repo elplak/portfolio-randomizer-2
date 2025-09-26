@@ -1,9 +1,9 @@
 import { randomChoice, randomBool } from "../utils/random";
 import { getLoremCached } from "../utils/lorem";
 
-type AboutSection = () => Promise<string>;
+import type { SectionFactory } from "./hero";
 
-export const about: AboutSection[] = [
+export const about: SectionFactory[] = [
     async (): Promise<string> => `
     <section class="about img-left draggable-section" draggable="true">
       <div class="img-wrapper">

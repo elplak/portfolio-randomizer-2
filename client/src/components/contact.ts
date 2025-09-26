@@ -1,15 +1,16 @@
-import {randomBool, randomChoice} from "../utils/random";
-import {btnVariants} from "../data/buttonVariants";
+import { randomBool, randomChoice } from "../utils/random";
+import { btnVariants } from "../data/buttonVariants";
+import type { SectionFactory } from "./hero";
 
-export const contact: Array<() => Promise<string>> = [
+export const contact: SectionFactory[] = [
     async (): Promise<string> => {
-        const heading: string = randomBool() ? "Contact" : "Get in Touch";
-        const namePlaceholder: string = randomBool() ? "Your Name" : "Name";
-        const emailPlaceholder: string = randomBool() ? "Email Address" : "Email";
-        const messagePlaceholder: string = randomBool()
+        const heading = randomBool() ? "Contact" : "Get in Touch";
+        const namePlaceholder = randomBool() ? "Your Name" : "Name";
+        const emailPlaceholder = randomBool() ? "Email Address" : "Email";
+        const messagePlaceholder = randomBool()
             ? "Write your message..."
             : "Message";
-        const buttonClass: string = randomChoice(btnVariants);
+        const buttonClass = randomChoice(btnVariants);
 
         return `
       <section class="contact draggable-section" draggable="true">
@@ -24,5 +25,5 @@ export const contact: Array<() => Promise<string>> = [
           <i class="fa-solid fa-trash"></i>
         </button>
       </section>`;
-    },
+    }
 ];

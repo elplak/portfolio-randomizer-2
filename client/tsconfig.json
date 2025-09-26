@@ -1,0 +1,18 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["es2019", "dom"],
+    "rootDir": "src",
+    "outDir": "../dist/client",
+    "baseUrl": "src",
+    "paths": {
+      "components/*": ["components/*"],
+      "core/*": ["core/*"],
+      "data/*": ["data/*"],
+      "features/*": ["features/*"],
+      "utils/*": ["utils/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

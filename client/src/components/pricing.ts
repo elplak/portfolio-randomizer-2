@@ -1,9 +1,9 @@
-import {getLoremCached} from "../utils/lorem";
-import {randomBool, randomChoice} from "../utils/random";
-import {btnVariants} from "../data/buttonVariants";
+import { getLoremCached } from "../utils/lorem";
+import { randomBool, randomChoice } from "../utils/random";
+import { btnVariants } from "../data/buttonVariants";
+import type { SectionFactory } from "./hero";
 
 type Plan = { name: string; price: string };
-type SectionFactory = () => Promise<string>;
 
 export const pricing: SectionFactory[] = [
     async (): Promise<string> => {
@@ -12,11 +12,11 @@ export const pricing: SectionFactory[] = [
             { name: "Pro", price: "49€" },
             { name: "Enterprise", price: "99€" }
         ];
-        const featuredIndex: number = Math.floor(Math.random() * plans.length);
+        const featuredIndex = Math.floor(Math.random() * plans.length);
 
-        const plansHtml: string = await Promise.all(
+        const plansHtml = await Promise.all(
             plans.map(
-                async (plan, idx): Promise<string> => `
+                async (plan, idx) => `
           <div class="card ${idx === featuredIndex ? "featured" : ""}">
             <h3>${plan.name}</h3>
             <strong>${plan.price}</strong>
@@ -32,7 +32,7 @@ export const pricing: SectionFactory[] = [
             </a>
           </div>`
             )
-        ).then((arr: string[]) => arr.join(""));
+        ).then((arr) => arr.join(""));
 
         return `
       <section class="pricing grid draggable-section" draggable="true">
@@ -49,11 +49,11 @@ export const pricing: SectionFactory[] = [
             { name: "Team", price: "39€" },
             { name: "Business", price: "89€" }
         ];
-        const highlightIndex: number = Math.floor(Math.random() * plans.length);
+        const highlightIndex = Math.floor(Math.random() * plans.length);
 
-        const plansHtml: string = await Promise.all(
+        const plansHtml = await Promise.all(
             plans.map(
-                async (plan, idx): Promise<string> => `
+                async (plan, idx) => `
           <div class="row ${idx === highlightIndex ? "highlight" : ""}">
             <h3>${plan.name}</h3>
             <p>${await getLoremCached(1)}</p>
@@ -63,7 +63,7 @@ export const pricing: SectionFactory[] = [
             </a>
           </div>`
             )
-        ).then((arr: string[]) => arr.join(""));
+        ).then((arr) => arr.join(""));
 
         return `
       <section class="pricing rows draggable-section" draggable="true">
@@ -81,9 +81,9 @@ export const pricing: SectionFactory[] = [
             { name: "Ultimate", price: "129€" }
         ];
 
-        const plansHtml: string = plans
+        const plansHtml = plans
             .map(
-                (plan): string => `
+                (plan) => `
           <div>
             <strong>${plan.price}</strong>
             <h3>${plan.name}</h3>

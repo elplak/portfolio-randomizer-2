@@ -1,10 +1,11 @@
-import {randomBool} from "../utils/random";
+import { randomBool } from "../utils/random";
+import type { SectionFactory } from "./hero";
 
-export const gallery: Array<() => Promise<string>> = [
+export const gallery: SectionFactory[] = [
     async (): Promise<string> => {
-        const count: number = 5 + Math.floor(Math.random() * 3);
+        const count = 5 + Math.floor(Math.random() * 3);
 
-        const images: string = Array.from({ length: count })
+        const images = Array.from({ length: count })
             .map(() => {
                 const src = `https://picsum.photos/${
                     randomBool() ? "300/200" : "250/200"
@@ -28,9 +29,9 @@ export const gallery: Array<() => Promise<string>> = [
     },
 
     async (): Promise<string> => {
-        const count: number = 4 + Math.floor(Math.random() * 3);
+        const count = 4 + Math.floor(Math.random() * 3);
 
-        const images: string = Array.from({ length: count })
+        const images = Array.from({ length: count })
             .map(() => {
                 const src = `https://picsum.photos/${
                     randomBool() ? "400/250" : "350/220"
@@ -53,19 +54,5 @@ export const gallery: Array<() => Promise<string>> = [
           <i class="fa-solid fa-trash"></i>
         </button>
       </section>`;
-    },
+    }
 ];
-
-// lazy-loading
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll<HTMLImageElement>(".img-wrapper img").forEach((img) => {
-        const src = img.getAttribute("data-src");
-        if (!src) return;
-
-        img.addEventListener("load", () => {
-            img.closest(".img-wrapper")?.classList.add("loaded");
-        });
-
-        img.src = src;
-    });
-});

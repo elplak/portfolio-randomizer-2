@@ -1,6 +1,6 @@
 # Portfolio Randomizer
 
-Portfolio Randomizer is a small web app that creates **portfolio websites on the fly**.  
+Portfolio Randomizer is a small web index that creates **portfolio websites on the fly**.  
 Click a button, and you’ll get a random combination of layout, sections, styles, and effects.  
 Every result is a little different: sometimes minimal, sometimes bold, always surprising.
 

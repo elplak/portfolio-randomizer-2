@@ -1,11 +1,12 @@
 import { randomBool } from "../utils/random";
 import { getLoremCached } from "../utils/lorem";
+import type { SectionFactory } from "./hero";
 
-export const cards: Array<() => Promise<string>> = [
+export const cards: SectionFactory[] = [
     async (): Promise<string> => {
-        const count: number = 3 + Math.floor(Math.random() * 2);
+        const count = 3 + Math.floor(Math.random() * 2);
 
-        const cardHtml: string = await Promise.all(
+        const cardHtml = await Promise.all(
             Array.from({ length: count }).map(async (): Promise<string> => {
                 const imgUrl = `https://picsum.photos/${
                     randomBool() ? "300/200" : "280/180"
@@ -24,7 +25,7 @@ export const cards: Array<() => Promise<string>> = [
             <p>${text}</p>
           </div>`;
             })
-        ).then((arr: string[]) => arr.join(""));
+        ).then((arr) => arr.join(""));
 
         return `
       <section class="cards grid draggable-section" draggable="true">
@@ -33,5 +34,5 @@ export const cards: Array<() => Promise<string>> = [
           <i class="fa-solid fa-trash"></i>
         </button>
       </section>`;
-    },
+    }
 ];

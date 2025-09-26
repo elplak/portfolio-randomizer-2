@@ -1,14 +1,16 @@
-import {randomBool, randomChoice} from "../utils/random";
-import {getLoremCached} from "../utils/lorem";
-import {slogans} from "../data/slogans";
-import {btnVariants} from "../data/buttonVariants";
+import { randomBool, randomChoice } from "../utils/random";
+import { getLoremCached } from "../utils/lorem";
+import { slogans } from "../data/slogans";
+import { btnVariants } from "../data/buttonVariants";
 
-export const hero: Array<() => Promise<string>> = [
+export type SectionFactory = () => Promise<string>;
+
+export const hero: SectionFactory[] = [
     async (): Promise<string> => {
-        const title: string = randomChoice(slogans);
-        const text: string = await getLoremCached(randomBool() ? 1 : 2);
-        const btnClass: string = randomChoice(btnVariants);
-        const btnLabel: string = randomBool() ? "Learn more" : "Get started";
+        const title = randomChoice(slogans);
+        const text = await getLoremCached(randomBool() ? 1 : 2);
+        const btnClass = randomChoice(btnVariants);
+        const btnLabel = randomBool() ? "Learn more" : "Get started";
 
         return `
       <section class="hero center draggable-section" draggable="true">
@@ -24,13 +26,14 @@ export const hero: Array<() => Promise<string>> = [
     },
 
     async (): Promise<string> => {
-        const heading: string = randomBool()
-            ? "Portfolio " + Math.floor(Math.random() * 2050)
-            : randomChoice(slogans);
-        const text: string = await getLoremCached(1);
-        const btnClass: string = randomChoice(btnVariants);
-        const btnLabel: string = randomBool() ? "Discover" : "Explore";
-        const imgUrl: string = `https://picsum.photos/${
+        const heading =
+            randomBool()
+                ? "Portfolio " + Math.floor(Math.random() * 2050)
+                : randomChoice(slogans);
+        const text = await getLoremCached(1);
+        const btnClass = randomChoice(btnVariants);
+        const btnLabel = randomBool() ? "Discover" : "Explore";
+        const imgUrl = `https://picsum.photos/${
             randomBool() ? "600/400" : "500/350"
         }?random=${Math.random()}`;
 
@@ -54,10 +57,10 @@ export const hero: Array<() => Promise<string>> = [
     },
 
     async (): Promise<string> => {
-        const bgUrl: string = `https://picsum.photos/${
+        const bgUrl = `https://picsum.photos/${
             1200 + Math.floor(Math.random() * 100)
         }/${400 + Math.floor(Math.random() * 100)}?random=${Math.random()}`;
-        const title: string = randomChoice(slogans);
+        const title = randomChoice(slogans);
 
         return `
       <section class="hero full-bg draggable-section" draggable="true" style="background-image:url('${bgUrl}')">
@@ -66,5 +69,5 @@ export const hero: Array<() => Promise<string>> = [
           <i class="fa-solid fa-trash"></i>
         </button>
       </section>`;
-    },
+    }
 ];

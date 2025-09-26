@@ -1,13 +1,12 @@
-import {getLoremCached} from "../utils/lorem";
-
-type SectionFactory = () => Promise<string>;
+import { getLoremCached } from "../utils/lorem";
+import type { SectionFactory } from "./hero";
 
 export const testimonials: SectionFactory[] = [
     async (): Promise<string> => {
-        const text1: string = await getLoremCached(1);
-        const text2: string = await getLoremCached(1);
-        const author1: string = Math.random() > 0.5 ? "Alex" : "Taylor";
-        const author2: string = Math.random() > 0.5 ? "Jamie" : "Chris";
+        const text1 = await getLoremCached(1);
+        const text2 = await getLoremCached(1);
+        const author1 = Math.random() > 0.5 ? "Alex" : "Taylor";
+        const author2 = Math.random() > 0.5 ? "Jamie" : "Chris";
 
         return `
       <section class="testimonials draggable-section" draggable="true">
@@ -20,12 +19,12 @@ export const testimonials: SectionFactory[] = [
     },
 
     async (): Promise<string> => {
-        const items: string = await Promise.all(
+        const items = await Promise.all(
             Array.from({ length: 2 + Math.floor(Math.random() * 3) }).map(
-                async (_: unknown, i: number): Promise<string> =>
+                async (_, i) =>
                     `<blockquote>"${await getLoremCached(1)}" <span>- Person ${i + 1}</span></blockquote>`
             )
-        ).then((arr: string[]) => arr.join(""));
+        ).then((arr) => arr.join(""));
 
         return `
       <section class="testimonials grid draggable-section" draggable="true">

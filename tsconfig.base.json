@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "build": "tsc -b",
+    "start:server": "node dist/server/index.js",
+    "dev:client": "vite",
+    "build:client": "vite build"
+  }
+}
