@@ -1,51 +1,24 @@
-import express from "express";
-import bodyParser from "body-parser";
+import express, { Application } from "express";
 import cors from "cors";
 
-const app = express();
-app.use(cors());
-app.use(bodyParser.json());
+import textsRouter from "./routes/texts";
+import imagesRouter from "./routes/images";
+import themesRouter from "./routes/themes";
 
-let templates: Template[] = [
-    {
-        id: "templ1",
-        name: "Hero + Projects",
-        sectionOrder: ["hero", "projects", "about"],
-        html: {
-            hero: "<section class='hero'>...</section>",
-            projects: "<section class='projects'>...</section>",
-            about: "<section class='about'>...</section>"
-        },
-        metadata: { tags: ["bold", "image-heavy"] }
-    }
-];
-
-interface Template {
-    id: string;
-    name: string;
-    sectionOrder: string[];
-    html: Record<string, string>;
-    metadata?: {
-        tags?: string[];
-        [key: string]: any;
-    };
-}
-
-app.get("/api/templates", (req: any, res: any) => {
-    res.json({ templates });
-});
-
-app.get("/", (req: any, res: any) => {
-    res.send("hello world!")
-});
-
-app.post("/api/templates", (req: any, res: any) => {
-    const t: Template = req.body;
-    templates.push(t);
-    res.status(201).json({ template: t });
-});
-
+const app: Application = express();
 const PORT = process.env.PORT || 4000;
+
+app.use(cors());
+app.use(express.json());
+
+app.use("/api/texts", textsRouter);
+app.use("/api/images", imagesRouter);
+app.use("/api/themes", themesRouter);
+
+app.get("/", (_req, res) => {
+    res.send("hello world!");
+})
+
 app.listen(PORT, () => {
-    console.log(`running on port ${PORT}`);
+    console.log(`backend is running on port ${PORT}`);
 });
