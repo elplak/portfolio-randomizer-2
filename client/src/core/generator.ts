@@ -23,9 +23,9 @@ export async function generate(): Promise<void> {
     const selected = shuffle(getSelectedSections());
 
     if (selected.includes("hero")) {
-        const hero =
-            components.hero[Math.floor(Math.random() * components.hero.length)];
-        html += await hero();
+        const hero = components.hero[Math.floor(Math.random() * components.hero.length)];
+        const result = await hero();
+        html += result;
     }
 
     for (const sec of [
@@ -81,9 +81,19 @@ function initLazyLoading(): void {
                 if (entry.isIntersecting) {
                     const img = entry.target as HTMLImageElement;
                     const src = img.dataset.src;
-                    if (!src) return;
 
-                    img.src = src;
+                    if (!src || typeof src !== "string") {
+                        console.error("invalid src detected, skipping:", src);
+                        obs.unobserve(img);
+                        return;
+                    }
+
+                    try {
+                        img.src = src;
+                    } catch (e) {
+                        console.error("failed to assign img.src:", src, e);
+                    }
+
                     img.onload = () => {
                         const wrapper = img.closest<HTMLElement>(".img-wrapper");
                         if (wrapper) wrapper.classList.add("loaded");

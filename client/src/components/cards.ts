@@ -1,5 +1,5 @@
-import { randomBool } from "../utils/random";
-import { getLoremCached } from "../utils/lorem";
+import { randomBool } from "utils/random";
+import { getRandomText, getRandomImage } from "utils/api";
 import type { SectionFactory } from "./hero";
 
 export const cards: SectionFactory[] = [
@@ -8,12 +8,12 @@ export const cards: SectionFactory[] = [
 
         const cardHtml = await Promise.all(
             Array.from({ length: count }).map(async (): Promise<string> => {
-                const imgUrl = `https://picsum.photos/${
-                    randomBool() ? "300/200" : "280/180"
-                }?random=${Math.random()}`;
-
+                const imgUrl = await getRandomImage(
+                    randomBool() ? 300 : 280,
+                    randomBool() ? 200 : 180
+                );
                 const title = randomBool() ? "Card" : "Project";
-                const text = await getLoremCached(1);
+                const text = await getRandomText();
 
                 return `
           <div class="card">

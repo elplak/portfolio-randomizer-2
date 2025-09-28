@@ -2,17 +2,14 @@ import { Router, Request, Response } from "express";
 
 const router = Router();
 
-interface ImagesResponse {
-    images: string[];
-}
+router.get("/", (req: Request, res: Response<{ url: string }>) => {
+    const width = parseInt(req.query.width as string) || 600;
+    const height = parseInt(req.query.height as string) || 400;
 
-router.get("/", (req: Request, res: Response<ImagesResponse>) => {
-    const count: number = parseInt(req.query.count as string) || 5;
-    const images = Array.from({ length: count }, () => {
-        const id = Math.floor(Math.random() * 1000);
-        return `https://picsum.photos/id/${id}/600/400`;
-    });
-    res.json({ images });
+    const id = Math.floor(Math.random() * 1000);
+    const url = `https://picsum.photos/id/${id}/${width}/${height}`;
+
+    res.json({ url });
 });
 
 export default router;
