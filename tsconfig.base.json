@@ -1,8 +1,11 @@
 {
-  "scripts": {
-    "build": "tsc -b",
-    "start:server": "node dist/server/index.js",
-    "dev:client": "vite",
-    "build:client": "vite build"
+  "compilerOptions": {
+    "target": "es2019",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   }
 }
