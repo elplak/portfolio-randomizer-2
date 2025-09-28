@@ -4,14 +4,14 @@
   "description": "",
   "private": true,
   "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
     "dev:client": "vite",
     "dev:server": "ts-node server/src/index.ts",
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
-
     "build:client": "vite build",
     "build:server": "tsc -p server/tsconfig.json",
     "build": "npm run build:server && npm run build:client",
-
     "preview": "vite preview"
   },
   "repository": {
@@ -29,9 +29,12 @@
     "@types/express": "^5.0.3",
     "@types/file-saver": "^2.0.7",
     "@types/node": "^24.5.2",
+    "@types/supertest": "^6.0.3",
     "concurrently": "^9.2.1",
+    "supertest": "^7.1.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2",
-    "vite": "^7.1.7"
+    "vite": "^7.1.7",
+    "vitest": "^3.2.4"
   }
 }
