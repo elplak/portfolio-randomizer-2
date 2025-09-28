@@ -2,8 +2,8 @@
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "lib": ["es2019", "dom"],
-    "rootDir": "src",
-    "outDir": "../dist/client",
+    "rootDir": ".",
+    "outDir": "../dist",
     "baseUrl": "src",
     "paths": {
       "components/*": ["components/*"],
@@ -13,6 +13,6 @@
       "utils/*": ["utils/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "vite.config.ts"],
   "exclude": ["node_modules", "dist"]
 }

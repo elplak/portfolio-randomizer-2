@@ -1,16 +1,18 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "lib": ["es2020"],
-    "outDir": "../dist/server",
-    "rootDir": "src",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true
+    "lib": ["es2019", "dom"],
+    "rootDir": ".",
+    "outDir": "../dist",
+    "baseUrl": "src",
+    "paths": {
+      "components/*": ["components/*"],
+      "core/*": ["core/*"],
+      "data/*": ["data/*"],
+      "features/*": ["features/*"],
+      "utils/*": ["utils/*"]
+    }
   },
-  "include": ["src/**/*", "tests/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*", "vite.config.ts"],
+  "exclude": ["node_modules", "dist", "tests"]
 }
